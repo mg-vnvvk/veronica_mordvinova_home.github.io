@@ -1,50 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
+<html>
+<body>
 
-    <title>Veronica Mordvinova Home page loader</title>
-    <link rel="stylesheet" href="styles/loader.css">    
-</head>
+<h2>Redirect to a Webpage</h2>
+
+<button onclick="myFunction()">Page is moved to mordvinova.net</button>
+
 <script>
-loadedUrlHost = 'https://mordvinova.net'
-//loadedUrlHost = 'http://localhost:8080'
-loadedUrl = loadedUrlHost + ''
-
-fetch(loadedUrl, {  mode: 'cors' }
-)
-  .then(response => {
-    // Check if the request was successful
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    // Parse the response as text
-    return response.text();
-  })
-  .then(htmlContent => {
-    //replace base url
-    htmlContent = htmlContent.replace('<base href=""', '<base href="' + loadedUrlHost + '"');
-    document.open(); 
-    document.write(htmlContent); 
-    document.close();
-  })
-  .catch(error => {
-    console.error('Fetch error:', error);
-  });
-
+function myFunction() {
+  location.replace("https://mordvinova.net")
+}
 </script>
 
-<body style="background-color: white;">
-    <div class="waitmsg">Please wait, Page is loading ...</div>
-
-    <div class="ring">Page is loading
-      <span></span>
-    </div>
-
 </body>
-</html>
+</html> 
