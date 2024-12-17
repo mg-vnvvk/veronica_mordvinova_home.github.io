@@ -1,1 +1,50 @@
-Veronica Mordvinova home page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <title>Veronica Mordvinova Home page loader</title>
+    <link rel="stylesheet" href="styles/loader.css">    
+</head>
+<script>
+loadedUrlHost = 'https://mordvinova.net'
+//loadedUrlHost = 'http://localhost:8080'
+loadedUrl = loadedUrlHost + ''
+
+fetch(loadedUrl, {  mode: 'cors' }
+)
+  .then(response => {
+    // Check if the request was successful
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    // Parse the response as text
+    return response.text();
+  })
+  .then(htmlContent => {
+    //replace base url
+    htmlContent = htmlContent.replace('<base href=""', '<base href="' + loadedUrlHost + '"');
+    document.open(); 
+    document.write(htmlContent); 
+    document.close();
+  })
+  .catch(error => {
+    console.error('Fetch error:', error);
+  });
+
+</script>
+
+<body style="background-color: white;">
+    <div class="waitmsg">Please wait, Page is loading ...</div>
+
+    <div class="ring">Page is loading
+      <span></span>
+    </div>
+
+</body>
+</html>
